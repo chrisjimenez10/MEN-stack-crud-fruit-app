@@ -33,6 +33,11 @@ app.get("/", (req, res)=>{
     })
 })
 
+app.get("/fruits", async (req, res)=>{
+    const foundFruits = await Fruit.find();
+    res.send(foundFruits);
+})
+
 app.post("/fruits", async (req, res)=>{ //CAN NOT access the URL because it's a POST (Only way is through HTML Forms - Ensure that action attribute has correct URL --> The route path HERE has to MATCH the URL in the action attribute of <form> tag)
     console.log(req.body);
         //JavaScript logic and data manipulation to convert isReadyToEat value from string "on" to a boolean value (because that is what we specified in our Schema)
@@ -42,7 +47,8 @@ app.post("/fruits", async (req, res)=>{ //CAN NOT access the URL because it's a 
         req.body.isReadyToEat = false;
     }
     const createdFruit = await Fruit.create(req.body); //Creating object
-    res.send(createdFruit); //The JavaScript object created by the "urlencoded method " can be acessed from the request object with the body property (req.body)
+    // res.send(createdFruit); //The JavaScript object created by the "urlencoded method " can be acessed from the request object with the body property (req.body)
+    res.redirect("/fruits"); // res.redirect is a method of the response object that REDIRECTS user/client to the assigned route path inside the parenthesis (Here, we want to redirect user to the route that displays ALL fruits in database rather than to the create page, which will only show the single created fruit)
 })
 
 app.get("/fruits/new", (req, res)=>{
