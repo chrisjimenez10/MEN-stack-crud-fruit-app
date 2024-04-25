@@ -6,7 +6,8 @@
     <title>Create a Fruit</title>
 </head>
 <body>
-    <a href="../fruits">View Fruit Storage</a>
+    <%- include("../partials/nav.ejs") %>
+    <!-- <a href="../fruits">View Fruit Storage</a> -->
     <h1>Create a New Fruit</h1>
     <form action="/fruits/new" method="POST">
         <label>Name:</label>

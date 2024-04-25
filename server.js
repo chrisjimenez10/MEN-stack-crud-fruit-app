@@ -4,7 +4,6 @@ require("dotenv").config();
 const morgan = require("morgan");
 const mongoose = require("mongoose"); 
 const Fruit = require("./models/fruit.js"); //Requiring exported module from "./models/fruit.js file (It contains the collection we created in our database)
-app.use(express.static("public"));
 
 //Connect to our Database
     //We pass the environment variable (MongoDB connection string) to the mongoose.connect() method --> process.env.VARIABLE_NAME is how we access the variable from the .env file (config() method sets the environment variables in the process.env object)
@@ -16,6 +15,7 @@ mongoose.connection.on("connected", ()=>{
 
 const app = express();
 app.use(morgan("dev")); //Log HTTP Requests
+app.use(express.static("public")); //Middleware for computer to search and load up files from public directory (I have css stylesheets here)
 
 //Start Server
 port = 4000;

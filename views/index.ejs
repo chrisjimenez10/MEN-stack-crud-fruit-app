@@ -6,8 +6,9 @@
     <title>Fruit App</title>
 </head>
 <body>
-    <a href="./fruits/new">Create a Fruit</a>
-    <a href="./">Home Page</a>
+    <%- include("./partials/nav.ejs") %>
+    <!-- <a href="./fruits/new">Create a Fruit</a>
+    <a href="./">Home Page</a> -->
     <h1>Welcome to your Fruit Storage!</h1>
     <ul>
         <% fruits.forEach((fruit) => { %>
