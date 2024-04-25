@@ -6,7 +6,13 @@
     <title>Fruit App</title>
 </head>
 <body>
-    <h1>Welcome to the Fruits App!</h1>
-    <p>An app for collecting your favorite fruits</p>
+    <a href="./fruits/new">Create a Fruit</a>
+    <a href="./">Home Page</a>
+    <h1>Welcome to your Fruit Storage!</h1>
+    <ul>
+        <% fruits.forEach((fruit) => { %>
+            <li><%= fruit.name %></li>
+        <% }) %>
+    </ul>
 </body>
 </html>

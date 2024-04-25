@@ -4,6 +4,7 @@ require("dotenv").config();
 const morgan = require("morgan");
 const mongoose = require("mongoose"); 
 const Fruit = require("./models/fruit.js"); //Requiring exported module from "./models/fruit.js file (It contains the collection we created in our database)
+app.use(express.static("public"));
 
 //Connect to our Database
     //We pass the environment variable (MongoDB connection string) to the mongoose.connect() method --> process.env.VARIABLE_NAME is how we access the variable from the .env file (config() method sets the environment variables in the process.env object)
@@ -28,17 +29,17 @@ app.use(express.urlencoded({extended:false}));
 
 //Routes
 app.get("/", (req, res)=>{
-    res.render(`index.ejs`, {
+    res.render(`home.ejs`, {
 
     })
 })
 
 app.get("/fruits", async (req, res)=>{
     const foundFruits = await Fruit.find();
-    res.send(foundFruits);
+    res.render("./index.ejs", { fruits: foundFruits });
 })
 
-app.post("/fruits", async (req, res)=>{ //CAN NOT access the URL because it's a POST (Only way is through HTML Forms - Ensure that action attribute has correct URL --> The route path HERE has to MATCH the URL in the action attribute of <form> tag)
+app.post("/fruits/new", async (req, res)=>{ //CAN NOT access the URL because it's a POST (Only way is through HTML Forms - Ensure that action attribute has correct URL --> The route path HERE has to MATCH the URL in the action attribute of <form> tag)
     console.log(req.body);
         //JavaScript logic and data manipulation to convert isReadyToEat value from string "on" to a boolean value (because that is what we specified in our Schema)
     if(req.body.isReadyToEat === "on"){

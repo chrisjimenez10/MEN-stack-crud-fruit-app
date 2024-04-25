@@ -6,8 +6,9 @@
     <title>Create a Fruit</title>
 </head>
 <body>
+    <a href="../fruits">View Fruit Storage</a>
     <h1>Create a New Fruit</h1>
-    <form action="/fruits" method="POST">
+    <form action="/fruits/new" method="POST">
         <label>Name:</label>
          <!-- In order to capture the data that is SUBMITTED in the <form> element and have it be accessible for the app.use(express.urlencoded({extended:false})) method in our javascript file to convert into a javascript object, we need to give the <input> elements the name attribute and assign a value: The values HERE become the key in the object key-value pair and the VALUE in the javascript object becomes the <input> value that is submitted (i.e. the text from the text type input element) = This ensures we capture data send by the browser and be able to use it in our back-end javascript file -->
         <input type="text" name="name"/>
