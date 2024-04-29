@@ -38,7 +38,7 @@ app.get("/", (req, res)=>{
 })
 
 app.get("/fruits", async (req, res)=>{
-    const foundFruits = await Fruit.find();
+    const foundFruits = await Fruit.find().sort({name: "asc"}); //We can chain built-in query methods to refine query results
     res.render("./index.ejs", { fruits: foundFruits });
 })
 
