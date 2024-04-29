@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Edit Fruit</h1>
+    <form action="/fruits/<%= fruit._id %>?_method=PUT" method="POST">
+        <label>Name:</label>
+        <!-- For better UX, it's good practice to have current values displayed when EDITING: We can use the "value" attribute and use EJS to insert the current value-->
+        <input type="text" value="<%= fruit.name %>" name="name" />
+        <label>Ready to Eat?</label>
+                 <!-- We can put our attributes vertically, so we can add EJS logic: Here, we can display the current data for the "checkbox" input type with an if statement and the keyword "checked"  -->
+        <input
+         type="checkbox" name="isReadyToEat"
+         <% if(fruit.isReadyToEat){ %>
+            checked
+           <% } %> 
+         />
+        <button type="submit">Update Fruit</button>
+    </form>
+    <a class="fruits-index-link" href="/fruits">
+        <div class="index-link-text">Back to Fruits</div>
+    </a>
+</body>
+</html>

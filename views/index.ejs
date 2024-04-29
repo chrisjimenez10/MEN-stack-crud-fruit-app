@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fruit App</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <%- include("./partials/nav.ejs") %>
+    <nav><%- include("./partials/nav.ejs") %></nav>
     <!-- <a href="./fruits/new">Create a Fruit</a>
     <a href="./">Home Page</a> -->
     <h1>Welcome to your Fruit Storage!</h1>
     <ul>
         <% fruits.forEach((fruit) => { %>
-            <li><%= fruit.name %></li>
+           <a href="../fruits/<%= fruit._id %>"><li><%= fruit.name %></li></a>
         <% }) %>
     </ul>
 </body>
+<footer>Icons by <a href="https://www.flaticon.com/authors/freepik">Freekpik</a></footer>
 </html>

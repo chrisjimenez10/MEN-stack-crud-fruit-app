@@ -4,6 +4,8 @@ require("dotenv").config();
 const morgan = require("morgan");
 const mongoose = require("mongoose"); 
 const Fruit = require("./models/fruit.js"); //Requiring exported module from "./models/fruit.js file (It contains the collection we created in our database)
+const methodOverride = require("method-override"); //Requiring the methodOverride pacakge to override default method of POST in HTML forms to whatever we want (DELTE, PUT)
+
 
 //Connect to our Database
     //We pass the environment variable (MongoDB connection string) to the mongoose.connect() method --> process.env.VARIABLE_NAME is how we access the variable from the .env file (config() method sets the environment variables in the process.env object)
@@ -16,6 +18,7 @@ mongoose.connection.on("connected", ()=>{
 const app = express();
 app.use(morgan("dev")); //Log HTTP Requests
 app.use(express.static("public")); //Middleware for computer to search and load up files from public directory (I have css stylesheets here)
+app.use(methodOverride("_method")); //Setting a variable to use the methodOverride in HTML Forms
 
 //Start Server
 port = 4000;
@@ -56,4 +59,38 @@ app.get("/fruits/new", (req, res)=>{
     res.render("./fruits/new.ejs", {
 
     })
+})
+
+    //Show page of fruit by id
+app.get("/fruits/:fruitId", async (req, res)=>{
+    const id = req.params.fruitId;
+    const fruit = await Fruit.findById(id);
+    res.render("./fruits/show.ejs", {
+        fruit
+    })
+})
+
+    //DELETE Route
+app.delete("/fruits/:fruitId", async (req, res)=>{
+    await Fruit.findByIdAndDelete(req.params.fruitId)
+    res.redirect("/fruits")
+})
+
+    //Edit Show page
+app.get("/fruits/:fruitId/edit", async (req, res)=>{
+    const foundFruit = await Fruit.findById(req.params.fruitId);
+    res.render("./fruits/edit.ejs", {
+        fruit: foundFruit
+    })
+})
+
+app.put("/fruits/:fruitId", async (req, res)=>{
+    if(req.body.isReadyToEat === "on"){
+        req.body.isReadyToEat = true;
+    }else{
+        req.body.isReadyToEat = false;
+    }
+    const fruit = await Fruit.findByIdAndUpdate(req.params.fruitId, req.body, {new: true}); //If we want to access the new object properties within our javascript file, we need to use the object {new:true} inside the mongoose function findByIdAndUpdate()
+    console.log(fruit)
+    res.redirect(`/fruits/${req.params.fruitId}`)
 })
