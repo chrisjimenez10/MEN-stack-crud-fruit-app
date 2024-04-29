@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <div class="fruit-details">
+        <h1><%= fruit.name %></h1>
+        <h2>Status: <%= fruit.isReadyToEat === true ? "Ready to Eat!" : "Not Ready to Eat!" %></h2>
+        <h3>Fruit ID: <%= fruit._id %></h3>
+        <div class="fruit-actions">
+            <form action="/fruits/<%= fruit._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+            <a href="/fruits/<%= fruit._id %>/edit"><button class="edit-link">Edit Fruit</button></a>
+        </div>
+    </div>
     <a class="fruits-index-link" href="/fruits">
         <div class="index-link-text">Back to Fruits</div>
     </a>
-    <h1><%= fruit.name %></h1>
-    <h2><%= fruit._id %></h2>
-    <h2><%= fruit.isReadyToEat %></h2>
-    <form action="/fruits/<%= fruit._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-    </form>
-    <a href="/fruits/<%= fruit._id %>/edit"><button>Edit Fruit</button></a>
 </body>
 </html>

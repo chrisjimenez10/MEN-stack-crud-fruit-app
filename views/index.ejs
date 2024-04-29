@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <nav><%- include("./partials/nav.ejs") %></nav>
-    <!-- <a href="./fruits/new">Create a Fruit</a>
-    <a href="./">Home Page</a> -->
-    <h1>Welcome to your Fruit Storage!</h1>
+    <a href="/">Home Page</a>
+    <div class="index-header-div">
+        <h1>Welcome to your Fruit Storage!</h1>
+        <a class="add-fruit" href="/fruits/new">Add Fruit</a>
+    </div>
     <ul>
         <% fruits.forEach((fruit) => { %>
-           <a href="../fruits/<%= fruit._id %>"><li><%= fruit.name %></li></a>
+           <a href="../fruits/<%= fruit._id %>" class="fruit-cards"><li><%= fruit.name %></li></a>
         <% }) %>
     </ul>
 </body>

@@ -12,14 +12,16 @@
         <label>Name:</label>
         <!-- For better UX, it's good practice to have current values displayed when EDITING: We can use the "value" attribute and use EJS to insert the current value-->
         <input type="text" value="<%= fruit.name %>" name="name" />
-        <label>Ready to Eat?</label>
-                 <!-- We can put our attributes vertically, so we can add EJS logic: Here, we can display the current data for the "checkbox" input type with an if statement and the keyword "checked"  -->
-        <input
-         type="checkbox" name="isReadyToEat"
-         <% if(fruit.isReadyToEat){ %>
-            checked
-           <% } %> 
-         />
+        <div class="checkbox-div">
+            <label for="ready-to-eat">Ready to Eat?</label>
+                    <!-- We can put our attributes vertically, so we can add EJS logic: Here, we can display the current data for the "checkbox" input type with an if statement and the keyword "checked"  -->
+            <input
+            type="checkbox" name="isReadyToEat" id="ready-to-eat"
+            <% if(fruit.isReadyToEat){ %>
+                checked
+            <% } %> 
+            />
+         </div>
         <button type="submit">Update Fruit</button>
     </form>
     <a class="fruits-index-link" href="/fruits">
