@@ -21,7 +21,7 @@ app.use(express.static("public")); //Middleware for computer to search and load 
 app.use(methodOverride("_method")); //Setting a variable to use the methodOverride in HTML Forms
 
 //Start Server
-port = 4000;
+port = 4002;
 app.listen(port, ()=>{
     console.log(`Listening on ${port}`);
 })
